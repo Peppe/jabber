@@ -1,4 +1,9 @@
 @import url('./views/main-view.css');
-@import url('./views/hello-world-view.css');
+@import url('./views/chat-view.css');
 @import url('./views/about-view.css');
 @import url('./views/master-detail-view.css');
+@import url('./all-classes.css');
+@import url('./theme-light-contrast.css');
+@import url('./theme-dark.css');
+@import url('./theme-dark-contrast.css');
+@import url('./theme-fire-department.css');

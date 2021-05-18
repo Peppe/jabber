@@ -1,0 +1,162 @@
+ body[theme~="dark-contrast"] {
+    /* Base (background) */
+    --lumo-base-color: hsl(214, 35%, 21%);
+
+    /* Tint */
+    --lumo-tint-5pct: hsla(214, 65%, 85%, 0.06);
+    --lumo-tint-10pct: hsla(214, 60%, 80%, 0.14);
+    --lumo-tint-20pct: hsla(214, 64%, 82%, 0.23);
+    --lumo-tint-30pct: hsla(214, 69%, 84%, 0.32);
+    --lumo-tint-40pct: hsla(214, 73%, 86%, 0.41);
+    --lumo-tint-50pct: hsla(214, 78%, 88%, 0.5);
+    --lumo-tint-60pct: hsla(214, 82%, 90%, 0.6);
+    --lumo-tint-70pct: hsla(214, 87%, 92%, 0.7);
+    --lumo-tint-80pct: hsla(214, 91%, 94%, 0.8);
+    --lumo-tint-90pct: hsla(214, 96%, 96%, 0.9);
+    --lumo-tint: hsl(214, 100%, 98%);
+
+    /* Shade */
+    --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
+    --lumo-shade-10pct: hsla(214, 4%, 2%, 0.15);
+    --lumo-shade-20pct: hsla(214, 8%, 4%, 0.23);
+    --lumo-shade-30pct: hsla(214, 12%, 6%, 0.32);
+    --lumo-shade-40pct: hsla(214, 16%, 8%, 0.41);
+    --lumo-shade-50pct: hsla(214, 20%, 10%, 0.5);
+    --lumo-shade-60pct: hsla(214, 24%, 12%, 0.6);
+    --lumo-shade-70pct: hsla(214, 28%, 13%, 0.7);
+    --lumo-shade-80pct: hsla(214, 32%, 13%, 0.8);
+    --lumo-shade-90pct: hsla(214, 33%, 13%, 0.9);
+    --lumo-shade: hsl(214, 33%, 13%);
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-tint-5pct);
+    --lumo-contrast-10pct: var(--lumo-tint-10pct);
+    --lumo-contrast-20pct: var(--lumo-tint-20pct);
+    --lumo-contrast-30pct: var(--lumo-tint-30pct);
+    --lumo-contrast-40pct: var(--lumo-tint-40pct);
+    --lumo-contrast-50pct: var(--lumo-tint-50pct);
+    --lumo-contrast-60pct: var(--lumo-tint-60pct);
+    --lumo-contrast-70pct: var(--lumo-tint-70pct);
+    --lumo-contrast-80pct: var(--lumo-tint-80pct);
+    --lumo-contrast-90pct: var(--lumo-tint-90pct);
+    --lumo-contrast: var(--lumo-tint);
+
+    /* Text */
+    --lumo-header-text-color: var(--lumo-contrast);
+    --lumo-body-text-color: var(--lumo-contrast-90pct);
+    --lumo-secondary-text-color: var(--lumo-contrast-70pct);
+    --lumo-tertiary-text-color: var(--lumo-contrast-50pct);
+    --lumo-disabled-text-color: var(--lumo-contrast-30pct);
+
+    /* Primary */
+    --lumo-primary-color: hsl(214, 86%, 55%);
+    --lumo-primary-color-50pct: hsla(214, 86%, 55%, 0.5);
+    --lumo-primary-color-10pct: hsla(214, 90%, 63%, 0.1);
+    --lumo-primary-text-color: hsl(214, 100%, 70%);
+    --lumo-primary-contrast-color: #FFF;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 90%, 63%);
+    --lumo-error-color-50pct: hsla(3, 90%, 63%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 90%, 63%, 0.1);
+    --lumo-error-text-color: hsl(3, 100%, 67%);
+
+    /* Success */
+    --lumo-success-color: hsl(145, 65%, 42%);
+    --lumo-success-color-50pct: hsla(145, 65%, 42%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 65%, 42%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 47%);
+
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+}
+
+body[theme~="dark-contrast"] .main-layout-drawer {
+    /* Base (background) */
+    --lumo-base-color: #ffed85;
+
+    /* Tint */
+    --lumo-tint-5pct: #ffee8b;
+    --lumo-tint-10pct: #ffef91;
+    --lumo-tint-20pct: #fff19d;
+    --lumo-tint-30pct: #fff2aa;
+    --lumo-tint-40pct: #fff4b6;
+    --lumo-tint-50pct: #fff6c2;
+    --lumo-tint-60pct: #fff8ce;
+    --lumo-tint-70pct: #fffada;
+    --lumo-tint-80pct: #fffbe7;
+    --lumo-tint-90pct: #fffdf3;
+    --lumo-tint: #A223D;
+
+    /* Shade */
+    --lumo-shade-5pct: #f2e17e;
+    --lumo-shade-10pct: #e6d578;
+    --lumo-shade-20pct: #ccbe6a;
+    --lumo-shade-30pct: #b3a65d;
+    --lumo-shade-40pct: #998e50;
+    --lumo-shade-50pct: #807743;
+    --lumo-shade-60pct: #665f35;
+    --lumo-shade-70pct: #4d4728;
+    --lumo-shade-80pct: #332f1b;
+    --lumo-shade-90pct: #19180d;
+    --lumo-shade: #000000;
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-tint-5pct);
+    --lumo-contrast-10pct: var(--lumo-tint-10pct);
+    --lumo-contrast-20pct: var(--lumo-tint-20pct);
+    --lumo-contrast-30pct: var(--lumo-tint-30pct);
+    --lumo-contrast-40pct: var(--lumo-tint-40pct);
+    --lumo-contrast-50pct: var(--lumo-tint-50pct);
+    --lumo-contrast-60pct: var(--lumo-tint-60pct);
+    --lumo-contrast-70pct: var(--lumo-tint-70pct);
+    --lumo-contrast-80pct: var(--lumo-tint-80pct);
+    --lumo-contrast-90pct: var(--lumo-tint-90pct);
+    --lumo-contrast: var(--lumo-tint);
+
+    /* Text */
+    --lumo-header-text-color: #6A223D;
+    --lumo-body-text-color: #6A223D;
+    --lumo-secondary-text-color: #6A223D;
+    --lumo-tertiary-text-color: #6A223D;
+    --lumo-disabled-text-color: #6A223D;
+
+    /* Primary */
+    --lumo-primary-color: #6A223D;
+    --lumo-primary-color-50pct: hsla(214, 86%, 55%, 0.5);
+    --lumo-primary-color-10pct: #FFCA0F;
+    --lumo-primary-text-color: #6A223D;
+    --lumo-primary-contrast-color: #6A223D;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 90%, 63%);
+    --lumo-error-color-50pct: hsla(3, 90%, 63%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 90%, 63%, 0.1);
+    --lumo-error-text-color: hsl(3, 100%, 67%);
+
+    /* Success */
+    --lumo-success-color: hsl(145, 65%, 42%);
+    --lumo-success-color-50pct: hsla(145, 65%, 42%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 65%, 42%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 47%);
+
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+}
+
+body[theme~="dark-contrast"] .main-layout-drawer-header,
+body[theme~="dark-contrast"] .main-layout-header {
+    background-color: #B8951A;
+    color: #6A223D;
+    fill: #6A223D;
+    border-bottom-color: transparent
+}
+
+body[theme~="dark-contrast"] .main-layout-header {
+    margin-left: -1px;
+}
+
+body[theme~="dark-contrast"] .main-layout-header h1,
+body[theme~="dark-contrast"] .main-layout-header iron-icon {
+    color: #6A223D;
+}

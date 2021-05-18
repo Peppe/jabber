@@ -1,0 +1,72 @@
+ body[theme~="light-contrast"] .main-layout-drawer {
+    /* Base (background) */
+    --lumo-base-color: #323846;
+
+    /* Shade */
+    --lumo-shade-5pct: hsla(214, 65%, 85%, 0.06);
+    --lumo-shade-10pct: #2d323f;
+    --lumo-shade-20pct: #282d38;
+    --lumo-shade-30pct: #232731;
+    --lumo-shade-40pct: #1e222a;
+    --lumo-shade-50pct: #191c23;
+    --lumo-shade-60pct: #14161c;
+    --lumo-shade-70pct: #0f1115;
+    --lumo-shade-80pct: #0a0b0e;
+    --lumo-shade-90pct: #050607;
+    --lumo-shade: #000000;
+
+    /* Tint */
+    --lumo-tint-5pct: hsla(214, 0%, 0%, 0.07);
+    --lumo-tint-10pct: #474c59;
+    --lumo-tint-20pct: #5b606b;
+    --lumo-tint-30pct: #70747e;
+    --lumo-tint-40pct: #848890;
+    --lumo-tint-50pct: #999ca3;
+    --lumo-tint-60pct: #adafb5;
+    --lumo-tint-70pct: #c2c3c8;
+    --lumo-tint-80pct: #d6d7da;
+    --lumo-tint-90pct: #ebebed;
+    --lumo-tint: #ffffff;
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-tint-5pct);
+    --lumo-contrast-10pct: var(--lumo-tint-10pct);
+    --lumo-contrast-20pct: var(--lumo-tint-20pct);
+    --lumo-contrast-30pct: var(--lumo-tint-30pct);
+    --lumo-contrast-40pct: var(--lumo-tint-40pct);
+    --lumo-contrast-50pct: var(--lumo-tint-50pct);
+    --lumo-contrast-60pct: var(--lumo-tint-60pct);
+    --lumo-contrast-70pct: var(--lumo-tint-70pct);
+    --lumo-contrast-80pct: var(--lumo-tint-80pct);
+    --lumo-contrast-90pct: var(--lumo-tint-90pct);
+    --lumo-contrast: var(--lumo-tint);
+
+    /* Text */
+    --lumo-header-text-color: var(--lumo-contrast);
+    --lumo-body-text-color: var(--lumo-contrast-90pct);
+    --lumo-secondary-text-color: var(--lumo-contrast-70pct);
+    --lumo-tertiary-text-color: var(--lumo-contrast-50pct);
+    --lumo-disabled-text-color: var(--lumo-contrast-30pct);
+
+    /* Primary */
+    --lumo-primary-color: hsl(214, 86%, 55%);
+    --lumo-primary-color-50pct: hsla(214, 86%, 55%, 0.5);
+    --lumo-primary-color-10pct: hsla(214, 90%, 63%, 0.1);
+    --lumo-primary-text-color: hsl(214, 100%, 70%);
+    --lumo-primary-contrast-color: #FFF;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 90%, 63%);
+    --lumo-error-color-50pct: hsla(3, 90%, 63%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 90%, 63%, 0.1);
+    --lumo-error-text-color: hsl(3, 100%, 67%);
+
+    /* Success */
+    --lumo-success-color: hsl(145, 65%, 42%);
+    --lumo-success-color-50pct: hsla(145, 65%, 42%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 65%, 42%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 47%);
+
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+}

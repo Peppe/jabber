@@ -1,110 +1,145 @@
 package com.example.application.views.main;
 
-import java.util.Optional;
+import java.util.Arrays;
 
+import com.example.application.components.JensNav;
+import com.example.application.components.JensNavItem;
+import com.example.application.components.ThemeButton;
+
+import com.vaadin.collaborationengine.UserInfo;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.ComponentUtil;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
-import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
-import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.example.application.views.main.MainView;
-import com.example.application.views.helloworld.HelloWorldView;
-import com.example.application.views.about.AboutView;
-import com.example.application.views.masterdetail.MasterDetailView;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
 public class MainView extends AppLayout {
 
-    private final Tabs menu;
     private H1 viewTitle;
+    private Avatar avatar;
+    private UserInfo localUser;
+    private Span userLabel;
 
     public MainView() {
+        localUser = new UserInfo("sprintingSquirrel", "Sprinting Squirrel",
+                "https://i.pravatar.cc/150?img=54");
+        UI.getCurrent().getElement().setAttribute("theme", "light-contrast");
         setPrimarySection(Section.DRAWER);
         addToNavbar(true, createHeaderContent());
-        menu = createMenu();
-        addToDrawer(createDrawerContent(menu));
+        addToDrawer(createDrawerContent());
     }
 
     private Component createHeaderContent() {
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.setId("header");
-        layout.getThemeList().set("dark", true);
-        layout.setWidthFull();
-        layout.setSpacing(false);
-        layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.add(new DrawerToggle());
+        DrawerToggle drawerToggle = new DrawerToggle();
+        drawerToggle.addClassNames("text-secondary");
+        drawerToggle.setThemeName("contrast");
+
         viewTitle = new H1();
-        layout.add(viewTitle);
-        layout.add(new Avatar());
+        viewTitle.addClassNames("m-0", "text-l", "flex-auto");
+
+        Icon hashIcon = VaadinIcon.HASH.create();
+        hashIcon.addClassNames("text-s", "pe-s", "text-secondary");
+
+        Header layout = new Header();
+        layout.addClassName("main-layout-header");
+        layout.addClassNames("bg-base", "border-b", "border-contrast-10",
+                "box-border", "flex", "h-xl", "px-m", "items-center", "w-full");
+
+        layout.setWidthFull();
+        ThemeButton button = new ThemeButton();
+
+        layout.add(new DrawerToggle(), hashIcon, viewTitle, button);
+
         return layout;
     }
 
-    private Component createDrawerContent(Tabs menu) {
+    private Component createDrawerContent() {
         VerticalLayout layout = new VerticalLayout();
+        layout.addClassNames("main-layout-drawer");
         layout.setSizeFull();
         layout.setPadding(false);
         layout.setSpacing(false);
-        layout.getThemeList().set("spacing-s", true);
-        layout.setAlignItems(FlexComponent.Alignment.STRETCH);
-        HorizontalLayout logoLayout = new HorizontalLayout();
-        logoLayout.setId("logo");
-        logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "Jabber logo"));
-        logoLayout.add(new H1("Jabber"));
-        layout.add(logoLayout, menu);
+
+        Header header = new Header();
+        header.addClassNames("flex", "items-center", "h-xl", "px-m", "space-s",
+                "border-b", "border-contrast-10", "w-full", "box-border",
+                "bg-contrast-10");
+        header.addClassNames("main-layout-drawer-header");
+        Icon icon = VaadinIcon.COMMENTS_O.create();
+        icon.addClassNames("text-m");
+        H2 text = new H2("Jabber");
+        text.addClassNames("text-m", "m-0");
+        header.add(icon, text);
+
+        JensNav vaadinNav = new JensNav("Channels");
+        vaadinNav.addClassNames("main-layout-drawer-nav");
+        vaadinNav.addClassNames("w-full", "px-s", "box-border",
+                "bg-contrast-10");
+        vaadinNav.setItems(new JensNavItem("c/general", "general", "hash"),
+                new JensNavItem("c/announcements", "announcements", "hash", 2),
+                new JensNavItem("c/music", "music", "hash", 5),
+                new JensNavItem("c/community", "community", "hash"),
+                new JensNavItem("about", "About", "question", null,
+                        Arrays.asList(
+                                new JensNavItem("instructions", "Instructions",
+                                        "newspaper", 4),
+                                new JensNavItem("faq", "FAQ", "movie"))));
+
+        Footer footer = createMenuFooter();
+        layout.add(header, vaadinNav, footer); // TODO: menu,
+        layout.expand(vaadinNav);
         return layout;
     }
 
-    private Tabs createMenu() {
-        final Tabs tabs = new Tabs();
-        tabs.setOrientation(Tabs.Orientation.VERTICAL);
-        tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
-        tabs.setId("tabs");
-        tabs.add(createMenuItems());
-        return tabs;
-    }
+    private Footer createMenuFooter() {
+        avatar = new Avatar(localUser.getName(), localUser.getImage());
+        avatar.addClassNames("mr-xs pointer");
 
-    private Component[] createMenuItems() {
-        return new Tab[]{createTab("Hello World", HelloWorldView.class), createTab("About", AboutView.class),
-                createTab("Master-Detail", MasterDetailView.class)};
-    }
+        userLabel = new Span(localUser.getName());
+        userLabel.addClassNames("font-medium", "text-s", "text-secondary");
 
-    private static Tab createTab(String text, Class<? extends Component> navigationTarget) {
-        final Tab tab = new Tab();
-        tab.add(new RouterLink(text, navigationTarget));
-        ComponentUtil.setData(tab, Class.class, navigationTarget);
-        return tab;
+        Footer footer = new Footer(avatar, userLabel);
+        footer.addClassNames("main-layout-drawer-footer");
+        footer.addClassNames("flex", "items-center", "px-m", "pointer", "h-xl",
+                "bg-contrast-20", "w-full");
+        footer.addClickListener(event -> {
+            // footer.getUI().ifPresent(ui ->
+            // ui.navigate(YourProfileView.class));
+        });
+        return footer;
     }
 
     @Override
     protected void afterNavigation() {
         super.afterNavigation();
-        getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
-        viewTitle.setText(getCurrentPageTitle());
+        setViewTitle(getCurrentPageTitle());
     }
 
-    private Optional<Tab> getTabForComponent(Component component) {
-        return menu.getChildren().filter(tab -> ComponentUtil.getData(tab, Class.class).equals(component.getClass()))
-                .findFirst().map(Tab.class::cast);
+    public void setViewTitle(String title) {
+        viewTitle.setText(title);
     }
 
     private String getCurrentPageTitle() {
-        PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
+        PageTitle title = getContent().getClass()
+                .getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
+    }
+
+    public static MainView getInstance() {
+        return (MainView) UI.getCurrent().getChildren()
+                .filter(component -> component.getClass() == MainView.class)
+                .findFirst().orElse(null);
     }
 }

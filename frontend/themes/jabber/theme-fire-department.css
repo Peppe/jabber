@@ -1,0 +1,86 @@
+ body[theme~="fire-department"] {
+    /* Base (background) */
+    --lumo-base-color: #ce2029;
+
+    /* Tint */
+    --lumo-tint-5pct: #d02b34;
+    --lumo-tint-10pct: #d3363e;
+    --lumo-tint-20pct: #d84d54;
+    --lumo-tint-30pct: #dd6369;
+    --lumo-tint-40pct: #e2797f;
+    --lumo-tint-50pct: #e79094;
+    --lumo-tint-60pct: #eba6a9;
+    --lumo-tint-70pct: #f0bcbf;
+    --lumo-tint-80pct: #f5d2d4;
+    --lumo-tint-90pct: #fae9ea;
+    --lumo-tint: #ffffff;
+
+    /* Shade */
+    --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
+    --lumo-shade-10pct: #b91d25;
+    --lumo-shade-20pct: #a51a21;
+    --lumo-shade-30pct: #90161d;
+    --lumo-shade-40pct: #7c1319;
+    --lumo-shade-50pct: #671015;
+    --lumo-shade-60pct: #520d10;
+    --lumo-shade-70pct: #3e0a0c;
+    --lumo-shade-80pct: #290608;
+    --lumo-shade-90pct: #150304;
+    --lumo-shade: #000000;
+
+    /* Contrast */
+    --lumo-contrast-5pct: var(--lumo-tint-5pct);
+    --lumo-contrast-10pct: var(--lumo-tint-10pct);
+    --lumo-contrast-20pct: var(--lumo-tint-20pct);
+    --lumo-contrast-30pct: var(--lumo-tint-30pct);
+    --lumo-contrast-40pct: var(--lumo-tint-40pct);
+    --lumo-contrast-50pct: var(--lumo-tint-50pct);
+    --lumo-contrast-60pct: var(--lumo-tint-60pct);
+    --lumo-contrast-70pct: var(--lumo-tint-70pct);
+    --lumo-contrast-80pct: var(--lumo-tint-80pct);
+    --lumo-contrast-90pct: var(--lumo-tint-90pct);
+    --lumo-contrast: var(--lumo-tint);
+
+    /* Text */
+    --lumo-header-text-color: var(--lumo-contrast);
+    --lumo-body-text-color: var(--lumo-contrast-90pct);
+    --lumo-secondary-text-color: var(--lumo-contrast-70pct);
+    --lumo-tertiary-text-color: var(--lumo-contrast-50pct);
+    --lumo-disabled-text-color: var(--lumo-contrast-30pct);
+
+    /* Primary */
+    --lumo-primary-color: #671015;
+    --lumo-primary-color-50pct: #3e0a0c;
+    --lumo-primary-color-10pct: #671015;
+    --lumo-primary-text-color: #fff;
+    --lumo-primary-contrast-color: #FFF;
+
+    /* Error */
+    --lumo-error-color: hsl(3, 90%, 63%);
+    --lumo-error-color-50pct: hsla(3, 90%, 63%, 0.5);
+    --lumo-error-color-10pct: hsla(3, 90%, 63%, 0.1);
+    --lumo-error-text-color: hsl(3, 100%, 67%);
+
+    /* Success */
+    --lumo-success-color: hsl(145, 65%, 42%);
+    --lumo-success-color-50pct: hsla(145, 65%, 42%, 0.5);
+    --lumo-success-color-10pct: hsla(145, 65%, 42%, 0.1);
+    --lumo-success-text-color: hsl(145, 85%, 47%);
+
+    color: var(--lumo-body-text-color);
+    background-color: var(--lumo-base-color);
+}
+
+body[theme~="fire-department"] vaadin-app-layout {
+  background: url('./images/fire.png');
+  background-position: 95% 90%;
+  background-repeat: no-repeat;
+  background-size: 10%;
+}
+
+/*
+body.fire-department .main-layout-drawer-header,
+body.fire-department .main-layout-drawer-nav,
+body.fire-department .main-layout-drawer-footer {
+    background-color: var(--lumo-contrast-50pct);
+}*/
