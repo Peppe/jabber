@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.application</groupId>
     <artifactId>jabber</artifactId>
-    <name>Project base for Spring Boot and Vaadin Flow</name>
+    <name>Jabber</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
-        <vaadin.version>20.0.0.alpha7</vaadin.version>
+        <vaadin.version>20.0.0.beta1</vaadin.version>
+        <vaadin.plugin.version>20.0.0.alpha7</vaadin.plugin.version>
     </properties>
 
     <parent>
@@ -146,8 +147,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.vaadin.addons.apollo</groupId>
+            <artifactId>ApolloNav</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 
@@ -173,7 +175,7 @@
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
-                <version>${vaadin.version}</version>
+                <version>${vaadin.plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -194,7 +196,7 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>${vaadin.version}</version>
+                        <version>${vaadin.plugin.version}</version>
                         <executions>
                             <execution>
                                 <goals>

@@ -2,8 +2,9 @@ package com.example.application.views.main;
 
 import java.util.Arrays;
 
-import com.example.application.components.JensNav;
-import com.example.application.components.JensNavItem;
+import org.vaadin.addons.apollonav.ApolloNav;
+import org.vaadin.addons.apollonav.ApolloNavItem;
+
 import com.example.application.components.ThemeButton;
 
 import com.vaadin.collaborationengine.UserInfo;
@@ -37,8 +38,9 @@ public class MainView extends AppLayout {
                 "https://i.pravatar.cc/150?img=54");
         UI.getCurrent().getElement().setAttribute("theme", "light-contrast");
         setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
+        addToNavbar(false, createHeaderContent());
         addToDrawer(createDrawerContent());
+
     }
 
     private Component createHeaderContent() {
@@ -83,19 +85,20 @@ public class MainView extends AppLayout {
         text.addClassNames("text-m", "m-0");
         header.add(icon, text);
 
-        JensNav vaadinNav = new JensNav("Channels");
+        ApolloNav vaadinNav = new ApolloNav("Channels");
         vaadinNav.addClassNames("main-layout-drawer-nav");
         vaadinNav.addClassNames("w-full", "px-s", "box-border",
                 "bg-contrast-10");
-        vaadinNav.setItems(new JensNavItem("c/general", "general", "hash"),
-                new JensNavItem("c/announcements", "announcements", "hash", 2),
-                new JensNavItem("c/music", "music", "hash", 5),
-                new JensNavItem("c/community", "community", "hash"),
-                new JensNavItem("about", "About", "question", null,
+        vaadinNav.setItems(new ApolloNavItem("c/general", "general", "hash"),
+                new ApolloNavItem("c/announcements", "announcements", "hash",
+                        2),
+                new ApolloNavItem("c/music", "music", "hash", 5),
+                new ApolloNavItem("c/community", "community", "hash"),
+                new ApolloNavItem("about", "About", "question", null,
                         Arrays.asList(
-                                new JensNavItem("instructions", "Instructions",
-                                        "newspaper", 4),
-                                new JensNavItem("faq", "FAQ", "movie"))));
+                                new ApolloNavItem("instructions",
+                                        "Instructions", "newspaper", 4),
+                                new ApolloNavItem("faq", "FAQ", "movie"))));
 
         Footer footer = createMenuFooter();
         layout.add(header, vaadinNav, footer); // TODO: menu,
