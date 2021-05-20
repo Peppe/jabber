@@ -12,7 +12,7 @@
     <properties>
         <java.version>11</java.version>
         <vaadin.version>20.0.0.beta1</vaadin.version>
-        <vaadin.plugin.version>20.0.0.alpha7</vaadin.plugin.version>
+        <vaadin.plugin.version>20.0.0.beta1</vaadin.plugin.version>
     </properties>
 
     <parent>
@@ -150,6 +150,10 @@
             <groupId>org.vaadin.addons.apollo</groupId>
             <artifactId>ApolloNav</artifactId>
             <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 

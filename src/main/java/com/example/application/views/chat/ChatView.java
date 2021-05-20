@@ -4,10 +4,12 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.annotation.security.RolesAllowed;
+
+import com.example.application.security.SecurityConfig;
 import com.example.application.views.main.MainView;
 
 import com.vaadin.collaborationengine.CollaborationMessageInput;
@@ -31,6 +33,7 @@ import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "c/:channel?", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
+@RolesAllowed(SecurityConfig.ROLE_ADMIN)
 public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
         AfterNavigationObserver, HasDynamicTitle {
 
@@ -181,16 +184,16 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
+        List<String> locationSegments = event.getLocationChangeEvent()
+                .getLocation().getSegments();
+        if (locationSegments != null && locationSegments.size() > 1) {
+            currentChannel = locationSegments.get(1);
+        } else {
+            currentChannel = "unknown";
+        }
         MainView mainView = MainView.getInstance();
         if (mainView != null) {
             mainView.setViewTitle(currentChannel);
-        }
-        Optional<String> channel = event.getLocationChangeEvent()
-                .getQueryParameter("channel");
-        if (channel.isPresent()) {
-            currentChannel = channel.get();
-        } else {
-            currentChannel = "general";
         }
 
         list.setTopic("c/" + currentChannel);
