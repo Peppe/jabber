@@ -1,7 +1,7 @@
 import {
   LitElement,
   html,
-  TemplateResult,
+  query,
   property,
   customElement,
 } from "lit-element";
@@ -14,9 +14,11 @@ import * as glyphs from "./vaadin-icons-bundle.js";
 
 @customElement("login-view")
 export class LoginView extends LitElement {
-
   @property()
   label: String | undefined = undefined;
+
+  @query("#loginForm")
+  loginForm!: HTMLFormElement;
 
   createRenderRoot() {
     return this;
@@ -30,28 +32,20 @@ export class LoginView extends LitElement {
         <div
           class="border border-contrast-20 flex flex-col rounded-m bg-base p-m"
         >
-          <div>Use any user name</div>
-          <div>and the password "foo" to enter</div>
-          <form method="POST" action="login" class="flex flex-col">
+          <form id="loginForm" name="login" method="POST" action="login" class="flex flex-col">
             <vaadin-text-field
               name="username"
-              label="User code"
+              label="Your user name"
               autocapitalize="none"
               autocorrect="off"
               spellcheck="false"
             >
               <input type="text" slot="input" />
             </vaadin-text-field>
-            <vaadin-password-field
-              name="password"
-              label="Password"
-              spellcheck="false"
-            >
-              <input type="password" slot="input" />
-            </vaadin-password-field>
-            <button type="submit">Submit</button>
 
-            <vaadin-button theme="primary contained" @click="submit"
+            <vaadin-button
+              theme="primary contained"
+              @click=${() => this.submit()}
               >Submit</vaadin-button
             >
           </form>
@@ -73,6 +67,7 @@ export class LoginView extends LitElement {
     super.connectedCallback();
   }
 
-  buttonPressed(e : CustomEvent){
+  submit() {
+    this.loginForm.submit();
   }
 }

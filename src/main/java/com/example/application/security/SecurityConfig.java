@@ -52,7 +52,7 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
             throws Exception {
         auth.userDetailsService(username -> {
             System.out.println("Asking details for user: " + username);
-            return new User(username, passwordEncoder().encode("foo"),
+            return new User(username, passwordEncoder().encode(""),
                     Arrays.asList(new SimpleGrantedAuthority(ROLE_ADMIN)));
             // UserInfo userInfo = userInfoRepository.findByUsername(username);
             // if (userInfo == null) {
