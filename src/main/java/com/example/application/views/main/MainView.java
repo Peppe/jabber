@@ -2,6 +2,10 @@ package com.example.application.views.main;
 
 import java.util.Arrays;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.vaadin.addons.apollonav.ApolloNav;
 import org.vaadin.addons.apollonav.ApolloNavItem;
@@ -26,10 +30,13 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinServletRequest;
+import com.vaadin.flow.spring.annotation.UIScope;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
+@UIScope
+@org.springframework.stereotype.Component
 public class MainView extends AppLayout {
 
     private H1 viewTitle;
@@ -38,13 +45,42 @@ public class MainView extends AppLayout {
     private Span userLabel;
 
     public MainView() {
-        localUser = new UserInfo("sprintingSquirrel", "Sprinting Squirrel",
+        String username = setCurrentUser();
+        localUser = new UserInfo(username, username,
                 "https://i.pravatar.cc/150?img=54");
         UI.getCurrent().getElement().setAttribute("theme", "light-contrast");
         setPrimarySection(Section.DRAWER);
         addToNavbar(false, createHeaderContent());
         addToDrawer(createDrawerContent());
+    }
 
+    private String setCurrentUser() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        if (context == null) {
+            System.err.println("No context when checking user");
+            return "";
+        }
+
+        Authentication authentication = context.getAuthentication();
+        if (authentication == null) {
+            System.err
+                    .println("No authentication in context when checking user");
+            return "";
+        }
+        Object principal = authentication.getPrincipal();
+        if (principal == null) {
+            System.err.println("No principal when checking user");
+            return "";
+        }
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+    }
+
+    public UserInfo getlocalUser() {
+        return localUser;
     }
 
     private Component createHeaderContent() {
@@ -84,7 +120,7 @@ public class MainView extends AppLayout {
         header.addClassNames("main-layout-drawer-header");
         Icon icon = VaadinIcon.COMMENTS_O.create();
         icon.addClassNames("text-m");
-        H2 text = new H2("Jabber");
+        H2 text = new H2("Vabber");
         text.addClassNames("text-m", "m-0");
         header.add(icon, text);
 

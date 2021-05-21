@@ -5,9 +5,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 import javax.annotation.security.RolesAllowed;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.application.security.SecurityConfig;
 import com.example.application.views.main.MainView;
@@ -40,10 +41,9 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
     private final CollaborationMessageList list;
     private String currentChannel = "general";
 
-    public ChatView() {
-        UserInfo userInfo = new UserInfo(UUID.randomUUID().toString(),
-                "Steve Lange");
+    public ChatView(@Autowired MainView mainView) {
 
+        UserInfo userInfo = mainView.getlocalUser();
         list = new CollaborationMessageList(userInfo, "c/general");
         list.setWidthFull();
         list.addClassNames("chat-view-message-list");
@@ -58,11 +58,11 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
         MessageInput dummyInput = dummyMessageInput(dummyList);
 
         // (dummyList, dummyInput);
-        VerticalLayout chatLayout = new VerticalLayout(dummyList, dummyInput);
+        VerticalLayout chatLayout = new VerticalLayout(list, input);
         chatLayout.setSpacing(false);
         chatLayout.setPadding(false);
         chatLayout.setSizeFull();
-        chatLayout.expand(dummyList);
+        chatLayout.expand(list);
 
         VerticalLayout memberList = getMemberList();
         add(chatLayout, memberList);
@@ -184,6 +184,7 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
+        UserInfo userInfo = MainView.getInstance().getlocalUser();
         List<String> locationSegments = event.getLocationChangeEvent()
                 .getLocation().getSegments();
         if (locationSegments != null && locationSegments.size() > 1) {
@@ -195,7 +196,6 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
         if (mainView != null) {
             mainView.setViewTitle(currentChannel);
         }
-
         list.setTopic("c/" + currentChannel);
     }
 }
