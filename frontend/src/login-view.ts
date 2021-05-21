@@ -40,7 +40,7 @@ export class LoginView extends LitElement {
               autocorrect="off"
               spellcheck="false"
             >
-              <input type="text" slot="input" />
+              <input type="text" slot="input" autofocus />
             </vaadin-text-field>
 
             <vaadin-button
