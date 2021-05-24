@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.annotation.security.RolesAllowed;
@@ -175,6 +176,15 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
+        Optional<String> channel = event.getRouteParameters().get("channel");
+        System.out.println(channel.orElseGet(() -> "No channel"));
+        if (channel.isPresent()) {
+            currentChannel = channel.get();
+        } else {
+            currentChannel = "general";
+        }
+
+        list.setTopic("c/" + currentChannel);
     }
 
     @Override
@@ -184,18 +194,9 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
-        UserInfo userInfo = MainView.getInstance().getlocalUser();
-        List<String> locationSegments = event.getLocationChangeEvent()
-                .getLocation().getSegments();
-        if (locationSegments != null && locationSegments.size() > 1) {
-            currentChannel = locationSegments.get(1);
-        } else {
-            currentChannel = "unknown";
-        }
         MainView mainView = MainView.getInstance();
         if (mainView != null) {
             mainView.setViewTitle(currentChannel);
         }
-        list.setTopic("c/" + currentChannel);
     }
 }
