@@ -20,6 +20,8 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -138,9 +140,12 @@ public class MainView extends AppLayout {
                                 new ApolloNavItem("about", "Instructions",
                                         "newspaper", 4),
                                 new ApolloNavItem("faq", "FAQ", "movie"))));
-        Button logout = new Button("Log out", e -> logout());
+
+        Div logoutDiv = new Div();
+        logoutDiv.addClassNames("w-full", "px-s", "box-border",
+                "bg-contrast-10", "m-0");
         Footer footer = createMenuFooter();
-        layout.add(header, vaadinNav, logout, footer); // TODO: menu,
+        layout.add(header, vaadinNav, footer); // TODO: menu,
         layout.expand(vaadinNav);
         return layout;
     }
@@ -161,15 +166,21 @@ public class MainView extends AppLayout {
 
         userLabel = new Span(localUser.getName());
         userLabel.addClassNames("font-medium", "text-s", "text-secondary");
+        userLabel.addClassNames("flex-grow");
+        Button logout = new Button("Log out", e -> logout());
+        logout.addThemeVariants(ButtonVariant.LUMO_CONTRAST,
+                ButtonVariant.LUMO_TERTIARY);
+        logout.addClassNames("text-secondary", "text-s");
 
-        Footer footer = new Footer(avatar, userLabel);
+        Footer footer = new Footer(avatar, userLabel, logout);
         footer.addClassNames("main-layout-drawer-footer");
         footer.addClassNames("flex", "items-center", "px-m", "pointer", "h-xl",
-                "bg-contrast-20", "w-full");
+                "bg-contrast-20", "w-full", "box-border");
         footer.addClickListener(event -> {
             // footer.getUI().ifPresent(ui ->
             // ui.navigate(YourProfileView.class));
         });
+
         return footer;
     }
 

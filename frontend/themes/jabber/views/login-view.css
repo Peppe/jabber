@@ -11,6 +11,22 @@ login-view {
   position:relative;
 }
 
+.login-view-avatars {
+    width: 20em;
+    display:flex;
+    flex-wrap: wrap;
+    height: 14em;
+    overflow-y: scroll;
+    border: 1px solid var(--lumo-contrast-10pct);
+    border-radius: var(--lumo-border-radius);
+}
+
+.login-view-avatars img{
+    width: 2.5em;
+    padding: 0.75em;
+    border-radius: var(--lumo-border-radius);
+}
+
 .image-attribution {
   color: rgba(255, 255, 255, 0.5);
 }
