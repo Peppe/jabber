@@ -177,7 +177,6 @@ public class ChatView extends HorizontalLayout implements BeforeEnterObserver,
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         Optional<String> channel = event.getRouteParameters().get("channel");
-        System.out.println(channel.orElseGet(() -> "No channel"));
         if (channel.isPresent()) {
             currentChannel = channel.get();
         } else {
