@@ -3,12 +3,15 @@ package com.example.application.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.stereotype.Component;
+
+import com.vaadin.flow.spring.security.VaadinDefaultRequestCache;
 
 /**
  * HttpSessionRequestCache that avoids saving internal framework requests.
  */
-class CustomRequestCache extends HttpSessionRequestCache {
+@Component
+class CustomRequestCache extends VaadinDefaultRequestCache {
     /**
      * {@inheritDoc}
      *
@@ -20,9 +23,10 @@ class CustomRequestCache extends HttpSessionRequestCache {
     @Override
     public void saveRequest(HttpServletRequest request,
             HttpServletResponse response) {
-        if (!SecurityUtils.isFrameworkInternalRequest(request)) {
-            super.saveRequest(request, response);
+        if (request.getServletPath().startsWith("/beacon/")) {
+            return;
         }
+        super.saveRequest(request, response);
     }
 
 }

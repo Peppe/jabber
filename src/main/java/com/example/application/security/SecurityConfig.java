@@ -2,6 +2,7 @@ package com.example.application.security;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,8 +27,9 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
     public static final String LOGOUT_SUCCESS_URL = "/";
     public static final String ROLE_USER = "user";
     public static final String ROLE_ADMIN = "admin";
-    // @Autowired
-    // private UserInfoRepository userInfoRepository;
+
+    @Autowired
+    private CustomRequestCache requestCache;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,6 +40,7 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.csrf().disable();
+        http.requestCache().requestCache(requestCache);
         super.setLoginView(http, "/login", "/logout");
     }
 
@@ -50,23 +53,9 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.userDetailsService(username -> {
-            System.out.println("Asking details for user: " + username);
-            return new User(username, passwordEncoder().encode(""),
-                    Arrays.asList(new SimpleGrantedAuthority(ROLE_ADMIN)));
-            // UserInfo userInfo = userInfoRepository.findByUsername(username);
-            // if (userInfo == null) {
-            // throw new UsernameNotFoundException(
-            // "No user present with username: " + username);
-            // } else {
-            // return new User(userInfo.getUsername(),
-            // userInfo.getEncodedPassword(),
-            // userInfo.getRoles().stream()
-            // .map(role -> new SimpleGrantedAuthority(
-            // "ROLE_" + role))
-            // .collect(Collectors.toList()));
-            // }
-        });
+        auth.userDetailsService(
+                username -> new User(username, passwordEncoder().encode(""),
+                        Arrays.asList(new SimpleGrantedAuthority(ROLE_ADMIN))));
     }
 
 }
